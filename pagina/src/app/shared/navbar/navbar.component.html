@@ -1,0 +1,54 @@
+<nav id="navbar-main"
+  class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
+  <div class="container">
+    <a class="navbar-brand mr-lg-5" [routerLink]="['/']">
+      <img src="./assets/img/brand/fav_icon_name.png">
+    </a>
+
+    <ul class="navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto">
+
+      <li class="nav-item dropdown">
+        <a [routerLink]="['/serverComponent']" class="nav-link no-caret" data-toggle="dropdown" role="button">
+          <i class="ni ni-ui-04 d-lg-none"></i>
+          <span class="nav-link-inner--text">BUY</span>
+        </a>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="flag">
+        <a [routerLink]="['/usuarioComponent']" class="nav-link no-caret" data-toggle="dropdown" role="button">
+          <i class="ni ni-ui-04 d-lg-none"></i>
+          <span class="nav-link-inner--text">USERS</span>
+        </a>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="usuario.id">
+        <a [routerLink]="['/usuarioComponent']" class="nav-link no-caret" data-toggle="dropdown" role="button">
+          <i class="ni ni-ui-04 d-lg-none"></i>
+          <span class="nav-link-inner--text">{{usuario.username}}</span>
+        </a>
+      </li>
+
+      <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="!usuario.id else elseBlock">
+        <a [routerLink]="['/login']" class="btn btn-neutral btn-icon">
+          <span class="btn-inner--icon">
+            <i class="ni ni-circle-08 mr-2"></i>
+          </span>
+          <span class="nav-link-inner--text">LOGIN</span>
+        </a>
+      </li>
+
+      <ng-template #elseBlock>
+        <li class="nav-item d-none d-lg-block ml-lg-4">
+          <a (click)="logOut()" class="btn btn-neutral btn-icon">
+            <span class="btn-inner--icon">
+              <i class="ni ni-circle-08 mr-2"></i>
+            </span>
+            <span class="nav-link-inner--text">LOGOUT</span>
+          </a>
+        </li>
+      </ng-template>
+
+
+    </ul>
+  </div>
+</nav>

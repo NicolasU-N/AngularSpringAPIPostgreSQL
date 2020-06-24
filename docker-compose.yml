@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+
+  database:
+    image: "postgres:9.6.18-alpine"
+    container_name: database
+    environment:
+        POSTGRES_DB: profundizacion
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: Nico-123456
+    volumes:
+      - application-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - backendNetwork
+
+  springapi:
+    build: ./demo
+    container_name: springapi
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+    networks:
+      - backendNetwork
+      - frontendNetwork
+
+  angular:
+    build: ./pagina
+    container_name: angular
+    ports:
+      - 4200:80
+    depends_on:
+      - springapi
+    networks:
+      - frontendNetwork
+
+
+volumes:
+  application-data:
+
+networks:
+  backendNetwork:
+  frontendNetwork:

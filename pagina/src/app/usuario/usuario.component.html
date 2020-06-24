@@ -1,0 +1,107 @@
+<main>
+  <section class="section section-shaped section-lg" style=" background-size: cover; height: 100vh;">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container ">
+      <div class="row justify-content-center">
+        <div class="col-lg-11">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="col-sm-9 ml-lg-auto">
+                <h1 class="mb-0">Usuarios registrados</h1>
+              </div>
+              <br /><br />
+
+              <table class="table" *ngIf="flagAdming else elseBlock">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Roles</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Servers</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let usuario of usuarios">
+                    <th scope="row">{{ usuario.id }}</th>
+                    <td>{{ usuario.username }}</td>
+                    <td>
+                      <li *ngFor="let rol of usuario.roles">
+                        {{rol.name}}
+                      </li>
+                    </td>
+                    <td>{{ usuario.enable }}</td>
+                    <td>
+                      <li *ngFor="let server of usuario.servers">
+                        {{server.dns}}
+                      </li>
+                    </td>
+                    <td>
+                      <button class="btn btn-1 btn-warning" type="button" name="button"
+                        [routerLink]="['/usuarioComponent/updateUsuario', usuario.id]">Editar</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-1 btn-danger" type="button" (click)="delete(usuario)">Eliminar</button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <ng-template #elseBlock>
+
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Roles</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Servers</th>
+                      <th scope="col">Editar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">{{ usuario.id }}</th>
+                      <td>{{ usuario.username }}</td>
+                      <td>
+                        <li *ngFor="let rol of usuario.roles">
+                          {{rol.name}}
+                        </li>
+                      </td>
+                      <td>{{ usuario.enable }}</td>
+                      <td>
+                        <li *ngFor="let server of usuario.servers">
+                          {{server.dns}}
+                        </li>
+                      </td>
+                      <td>
+                        <button class="btn btn-1 btn-warning" type="button" name="button"
+                          [routerLink]="['/usuarioComponent/updateUsuario', usuario.id]">Editar</button>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+              </ng-template>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

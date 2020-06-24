@@ -1,0 +1,58 @@
+<main>
+  <section class="section section-shaped section-lg"
+    style="background-image: url('./assets/img/theme/bg7.png'); background-size: cover; height: 100vh">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container pt-lg-md">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="card bg-secondary shadow border-0 py-lg-3">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small class="h4">Modificar Usuario</small>
+              </div>
+              <br />
+              <form role="form">
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="username" type="text" [(ngModel)]="usuario.username">
+                  </div>
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="password" type="password" name="password"
+                      [(ngModel)]="usuario.password">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEstados" class="col-sm-5 col-form-label">Estados</label>
+                  <div class="col-sm-7">
+                    <select id="inputEstados" [(ngModel)]="usuario.enable" class="form-control" name="enable">
+                      <option value='true'>true</option>
+                      <option value='false'>false</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="button" class="btn btn-primary mt-4" (click)="update()">Actualizar usuario</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

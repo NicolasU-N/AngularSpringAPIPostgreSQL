@@ -1,0 +1,67 @@
+<main>
+  <section class="section section-shaped section-lg" style=" background-size: cover; height: 100vh;">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container ">
+      <div class="row justify-content-center">
+        <div class="col-lg-11">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="col-sm-9 ml-lg-auto">
+                <h1 class="mb-0">Compra ya tu servidor</h1>
+              </div>
+              <br />
+              <button class="btn btn-icon btn-3 btn-primary mb-3" type="button" [routerLink]="['/formServer']" *ngIf="flag">
+                <span class="btn-inner--icon"><i class="ni ni-folder-17"></i></span>
+                <span class="btn-inner--text">Registrar Servidor</span>
+              </button>
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Capacidad</th>
+                    <th scope="col">DNS</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Ip</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col" *ngIf="flag">Editar</th>
+                    <th scope="col" *ngIf="flag">Eliminar</th>
+                    <th scope="col" *ngIf="!flag">Compra</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let server of servers">
+                    <th scope="row">{{ server.id }}</th>
+                    <td>{{ server.capacity }}</td>
+                    <td>{{ server.dns }}</td>
+                    <td>{{ server.enable }}</td>
+                    <td>{{ server.ip }}</td>
+                    <td>{{ server.price }}</td>
+                    <td *ngIf="flag">
+                      <button class="btn btn-1 btn-warning" type="button" name="button"
+                        [routerLink]="['/serverComponent/formServer', server.id]" *ngIf="flag">Editar</button>
+                    </td>
+                    <td *ngIf="flag">
+                      <button class="btn btn-1 btn-danger" type="button" (click)="delete(server)">Eliminar</button>
+                    </td>
+                    <td *ngIf="!flag">
+                      <button class="btn btn-1 btn-danger" type="button" (click)="buy(server)">COMPRAR</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
